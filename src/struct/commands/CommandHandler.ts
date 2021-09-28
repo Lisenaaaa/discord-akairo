@@ -729,11 +729,9 @@ export default class CommandHandler extends AkairoHandler {
 					case "NUMBER":
 						convertedOptions[option.name] = option.value;
 						break;
-					case "USER": {
-						const thing = { user: option.user, member: option.member };
-						convertedOptions[option.name] = thing;
+					case "USER":
+						convertedOptions[option.name] = { user: option.user, member: option.member };
 						break;
-					}
 					case "CHANNEL":
 						convertedOptions[option.name] = option.channel;
 						break;
@@ -743,11 +741,39 @@ export default class CommandHandler extends AkairoHandler {
 					case "MENTIONABLE":
 						convertedOptions[option.name] = option.role ? option.role : { user: option.user, member: option.member };
 						break;
-					case 'SUB_COMMAND':
-						convertedOptions['subcommand'] = option.name;
+					case "SUB_COMMAND":
+						convertedOptions["subcommand"] = option.name;
+						option.options?.forEach(subOption => {
+							switch (subOption.type) {
+								case "STRING":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "INTEGER":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "BOOLEAN":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "NUMBER":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "USER":
+									convertedOptions[subOption.name] = { user: subOption.user, member: subOption.member };
+									break;
+								case "CHANNEL":
+									convertedOptions[subOption.name] = subOption.channel;
+									break;
+								case "ROLE":
+									convertedOptions[subOption.name] = subOption.role;
+									break;
+								case "MENTIONABLE":
+									convertedOptions[subOption.name] = subOption.role ? subOption.role : { user: subOption.user, member: subOption.member };
+									break;
+							}
+						})
 						break;
-					case 'SUB_COMMAND_GROUP':
-						convertedOptions['subcommand'] = (option.options as {name:string,type:string}[])[0].name
+					case "SUB_COMMAND_GROUP":
+						convertedOptions["subcommand"] = (option.options as { name: string; type: string }[])[0].name;
 				}
 				// convertedOptions[option.name] = option
 			});
