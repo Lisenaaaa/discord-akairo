@@ -774,6 +774,7 @@ export default class CommandHandler extends AkairoHandler {
 						})
 						break;
 					case "SUB_COMMAND_GROUP":{
+						convertedOptions['subcommandGroup'] = option.name
 
 						// @ts-ignore
 						const options = option.options[0].options;
