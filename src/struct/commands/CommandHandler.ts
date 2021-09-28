@@ -4,6 +4,7 @@ import {
 	Awaited,
 	Collection,
 	CommandInteraction,
+	CommandInteractionOption,
 	GuildApplicationCommandPermissionData,
 	GuildResolvable,
 	Message,
@@ -767,13 +768,49 @@ export default class CommandHandler extends AkairoHandler {
 									convertedOptions[subOption.name] = subOption.role;
 									break;
 								case "MENTIONABLE":
-									convertedOptions[subOption.name] = subOption.role ? subOption.role : { user: subOption.user, member: subOption.member };
+									convertedOptions[subOption.name] = subOption.role
+										? subOption.role
+										: { user: subOption.user, member: subOption.member };
 									break;
 							}
-						})
+						});
 						break;
-					case "SUB_COMMAND_GROUP":
+					case "SUB_COMMAND_GROUP": {
+						const options = option.options as CommandInteractionOption[];
 						convertedOptions["subcommand"] = (option.options as { name: string; type: string }[])[0].name;
+
+						options.forEach(subOption => {
+							switch (subOption.type) {
+								case "STRING":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "INTEGER":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "BOOLEAN":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "NUMBER":
+									convertedOptions[subOption.name] = subOption.value;
+									break;
+								case "USER":
+									convertedOptions[subOption.name] = { user: subOption.user, member: subOption.member };
+									break;
+								case "CHANNEL":
+									convertedOptions[subOption.name] = subOption.channel;
+									break;
+								case "ROLE":
+									convertedOptions[subOption.name] = subOption.role;
+									break;
+								case "MENTIONABLE":
+									convertedOptions[subOption.name] = subOption.role
+										? subOption.role
+										: { user: subOption.user, member: subOption.member };
+									break;
+							}
+						});
+						break;
+					}
 				}
 				// convertedOptions[option.name] = option
 			});
