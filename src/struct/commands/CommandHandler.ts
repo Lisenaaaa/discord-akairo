@@ -4,7 +4,6 @@ import {
 	Awaited,
 	Collection,
 	CommandInteraction,
-	CommandInteractionOption,
 	GuildApplicationCommandPermissionData,
 	GuildResolvable,
 	Message,

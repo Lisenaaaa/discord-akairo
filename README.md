@@ -18,7 +18,10 @@
 ### Changes in this fork of akairo
 
 Please see [this file](/docs/general/updates.md) for a list of changes in this fork vs normal akairo.
-If you have any questions related to this fork please contact `IRONM00N#0001` in the akairo server or join my [bot's discord](https://discord.gg/7FpsYp2c47).
+If you have any questions related to this fork please contact `lis#6969` in the akairo server or join [my discord](https://discord.gg/uUaGtMVkhD).
+
+This is the same as `NotEnoughUpdates/discord-akairo`, but with some small changes to how slashcommand args work, to make them a bit easier to use.
+With the type `USER` or `MENTIONABLE`, if you selected a user, instead of the arg just being their ID, it'll now have a `user` and `member` object. For example, `args.example.user`
 
 ## Features
 
