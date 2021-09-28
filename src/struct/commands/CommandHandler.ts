@@ -768,19 +768,16 @@ export default class CommandHandler extends AkairoHandler {
 									convertedOptions[subOption.name] = subOption.role;
 									break;
 								case "MENTIONABLE":
-									convertedOptions[subOption.name] = subOption.role
-										? subOption.role
-										: { user: subOption.user, member: subOption.member };
+									convertedOptions[subOption.name] = subOption.role ? subOption.role : { user: subOption.user, member: subOption.member };
 									break;
 							}
-						});
+						})
 						break;
-					case "SUB_COMMAND_GROUP": {
-						const sub = option.options as CommandInteractionOption[];
+					case "SUB_COMMAND_GROUP":{
+						const options = (option.options as CommandInteractionOption[])
 						convertedOptions["subcommand"] = (option.options as { name: string; type: string }[])[0].name;
 
-						// @ts-ignore
-						sub.options.forEach(subOption => {
+						options.forEach(subOption => {
 							switch (subOption.type) {
 								case "STRING":
 									convertedOptions[subOption.name] = subOption.value;
@@ -804,14 +801,11 @@ export default class CommandHandler extends AkairoHandler {
 									convertedOptions[subOption.name] = subOption.role;
 									break;
 								case "MENTIONABLE":
-									convertedOptions[subOption.name] = subOption.role
-										? subOption.role
-										: { user: subOption.user, member: subOption.member };
+									convertedOptions[subOption.name] = subOption.role ? subOption.role : { user: subOption.user, member: subOption.member };
 									break;
 							}
-						});
-						break;
-					}
+						})
+						break}
 				}
 				// convertedOptions[option.name] = option
 			});
