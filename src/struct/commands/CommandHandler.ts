@@ -776,10 +776,11 @@ export default class CommandHandler extends AkairoHandler {
 						});
 						break;
 					case "SUB_COMMAND_GROUP": {
-						const options = option.options as CommandInteractionOption[];
+						const sub = option.options as CommandInteractionOption[];
 						convertedOptions["subcommand"] = (option.options as { name: string; type: string }[])[0].name;
 
-						options.forEach(subOption => {
+						// @ts-ignore
+						sub.options.forEach(subOption => {
 							switch (subOption.type) {
 								case "STRING":
 									convertedOptions[subOption.name] = subOption.value;
