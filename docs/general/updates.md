@@ -2,7 +2,7 @@
 
 ## TypeScript
 
-Everything has been rewritten in TypeScript - this means that typings will matches exactly with the code itself.
+Everything has been rewritten in TypeScript - this means that typings will match exactly with the code itself.
 
 ## Slash commands
 
