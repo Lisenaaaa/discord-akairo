@@ -33,7 +33,7 @@ export default class AkairoMessage extends Base {
 		this.guildId = interaction.guildId;
 		this.id = interaction.id;
 		this.interaction = interaction;
-		this.member = interaction.member;
+		this.member = interaction.member as APIInteractionGuildMember | GuildMember | null;
 		this.partial = false;
 
 		if (interaction.command?.type === "CHAT_INPUT") {
